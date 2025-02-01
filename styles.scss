@@ -1,0 +1,586 @@
+$color-button-bg: hsl(322, 100%, 66%);
+$color-button-active: hsl(321, 100%, 78%);
+$color-error: hsl(0, 100%, 63%);
+
+$color-text: hsl(192, 100%, 9%);
+$color-bg: hsl(207, 100%, 98%);
+
+$font-poppins: "Poppins", serif;
+$font-open: "Open Sans", serif;
+
+$font-weight-regular: 400;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+$screen-mobile: 720px;
+$screen-desktop: 1440px;
+
+$font-size-heading: clamp(1.5rem, 3vw, 3rem);
+
+@mixin shadow {
+    box-shadow: 0 0.1rem 0.5rem rgba(black, 0.3);
+}
+
+@mixin smooth {
+    transition-timing-function: linear;
+    transition-duration: 150ms;
+}
+
+@mixin flex($dir: row, $justify: flex-start, $align: flex-start) {
+    display: flex;
+    flex-direction: $dir;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+@mixin iconlink($url: '#'){
+    content: url($url);
+}
+
+@mixin size($size) {
+    width: $size;
+    height: $size;
+}
+
+%icon{
+    @include size(1rem);
+    display: inline;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+    margin-right: 1.25rem;
+}
+
+body {
+    @include flex(column, center, space-between);
+    margin: 0;
+    font-family: $font-open;
+    font-optical-sizing: auto;
+    color: $color-text;
+}
+
+p {
+    font-size: clamp(0.8rem, 2vw, 1.25rem);
+    font-weight: $font-weight-regular;
+}
+
+h1, h3, h4, h5, h6 {
+    font-family: $font-poppins;
+}
+
+header {
+    @include flex(row, space-between, flex-start);
+    //width: 100%;
+    padding: 1.75rem 1.3rem 1.75rem 1.5rem;
+    margin-bottom: 1rem;
+
+    @media screen and (min-width: $screen-mobile) {
+        padding: 5rem 4rem 5rem 5rem;
+    }
+
+    img {
+        width: 33%;
+        //height: 1.2rem;
+
+        @media screen and (min-width: $screen-mobile) {
+            width: 20%;//2.5rem;
+        }
+    }
+
+    a {
+        @include smooth();
+        width: 30%;
+        text-align: center;
+        text-decoration: none;
+        color: $color-button-bg;
+        border: 1px solid $color-button-bg;
+        border-radius: 3rem;
+        padding: clamp(0.3rem, 1vw, 0.55rem) 0;
+        text-transform: capitalize;
+        font-weight: $font-weight-semibold;
+        font-size: clamp(0.75rem, 2vw, 1.1rem);
+
+        &:hover {
+            color: $color-button-active;
+            border-color: $color-button-active;
+        }
+
+        @media screen and (min-width: $screen-mobile) {
+            font-weight: $font-weight-regular;
+            width: 11%;
+            min-width: 10rem;
+        }
+    }
+}
+
+main {
+    @include flex(column, center, center);
+    padding: 3rem 0;
+    gap: 1rem;
+    text-align: center;
+    margin: 0 0 12rem;
+    
+    @media screen and (min-width: $screen-mobile) {
+        margin-bottom: 6rem;
+    }
+
+    img {
+        width: 80%;
+        //padding: 0 1rem;
+        //margin: 4rem 0;
+
+        @media screen and (min-width: $screen-mobile) {
+            width: 72%;
+        }
+
+        &:nth-child(2) {
+            margin: 5rem 0;
+        }
+    }
+
+    .startlink {
+        @include shadow();
+        @include smooth();
+        width: 67%;
+        text-decoration: none;
+        color: $color-bg;
+        background-color: $color-button-bg;
+        padding: clamp(0.65rem, 2vw, 1.6rem) 0;//2.6rem;
+        margin: 1.5rem 0;
+        border-radius: 3rem;
+        font-family: inherit;
+        font-weight: $font-weight-bold;
+        font-size: clamp(0.7rem, 2vw, 1.2rem);
+        font-stretch: extra-condensed;
+        letter-spacing: 0.05rem;
+        transform: scaleY(1.2);
+
+        &:hover {
+            background-color: $color-button-active;
+        }
+
+        @media screen and (min-width: $screen-mobile) {
+            transform: scaleY(1.05);
+            width: 28%;
+            min-width: 20rem;
+            letter-spacing: 0.01rem;
+        }
+    }
+
+    .intro {
+        @include flex(column, center, center);
+        padding: 0 2.5rem;
+        gap: 0.5rem;
+
+        h1 {
+            font-family: $font-poppins;
+            font-size: $font-size-heading;
+            margin-bottom: 0;
+        }
+
+        p {
+            @media screen and (min-width: $screen-mobile) {
+                padding: 0 28%;
+            }
+        }
+    }
+
+    .stats {
+        @include flex(column, center, center);
+        gap: 1rem;
+        margin: 1rem 0;
+        width: 90%;
+
+        @media screen and (min-width: $screen-mobile) {
+            @include flex(row, space-around, baseline);
+            gap: 0;
+        }
+
+        img {
+            width: 20%;
+            padding: 0;
+            float: left;
+        }
+
+        h2 {
+            font-size: clamp(3.5rem, 10vw, 6rem);
+            margin: 0;
+        }
+        
+        p {
+            font-size: clamp(0.8rem, 3vw, 1.55rem);
+            text-align: center;
+            margin: 0 auto;
+            opacity: 0.5;
+            @media screen and (min-width: $screen-mobile) {
+                margin-top: 1rem;
+            }
+        }
+
+        div:last-child {
+            img {
+                width: 15%;
+                padding-left: 0.2rem;
+            }
+
+            h2 {
+                font-size: clamp(3rem, 10vw, 6rem);
+            }
+
+            p {
+                width: 40%;
+                text-align: center;
+
+                @media screen and (min-width: $screen-mobile) {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .features {
+        @include flex(column, center, center);
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+
+        .divider {
+            $urlbase: "./images/bg-section";
+            $urlpos: "-top";
+            $urlres: "-mobile";
+            $urlpart: "-1";
+            $urlext: ".svg";
+            width: 100%;
+            height: 112px;
+            background-image: url($urlbase + $urlpos + $urlres + $urlpart + $urlext);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: top;
+
+            @media screen and (min-width: $screen-mobile) {
+                height: 165px;
+                $urlres: "-desktop";
+                background-image: url($urlbase + $urlpos + $urlres + $urlpart + $urlext);
+                width: 110%;
+                background-position: right 10%;
+            }
+
+            &:nth-of-type(2) {
+                $urlpos: "-bottom";
+                $urlres: "-mobile";
+                $urlpart: "-1";
+                background-image: url($urlbase + $urlpos + $urlres + $urlpart + $urlext);
+
+                @media screen and (min-width: $screen-mobile) {
+                    height: 165px;
+                    $urlres: "-desktop";
+                    background-image: url($urlbase + $urlpos + $urlres + $urlpart + $urlext);
+                }
+            }
+
+            &:nth-of-type(3) {
+                $urlpart: "-2";
+                $urlpos: "-top";
+                $urlres: "-mobile";
+                background-image: url($urlbase + $urlpos + $urlres + $urlpart + $urlext);
+
+                @media screen and (min-width: $screen-mobile) {
+                    height: 165px;
+                    $urlres: "-desktop";
+                    background-image: url($urlbase + $urlpos + $urlres + $urlpart + $urlext);
+                }
+            }
+
+            &:nth-of-type(4) {
+                $urlpart: "-2";
+                $urlpos: "-bottom";
+                $urlres: "-mobile";
+                background-image: url($urlbase + $urlpos + $urlres + $urlpart + $urlext);
+
+                @media screen and (min-width: $screen-mobile) {
+                    height: 165px;
+                    $urlres: "-desktop";
+                    background-image: url($urlbase + $urlpos + $urlres + $urlpart + $urlext);
+                }
+            }
+
+            &:nth-of-type(5) {
+                $urlbase: "./images/bg-footer";
+                $urlpart: "";
+                $urlpos: "-top";
+                $urlres: "-mobile";
+                background-image: url($urlbase + $urlpos + $urlres + $urlpart + $urlext);
+
+                @media screen and (min-width: $screen-mobile) {
+                    height: 165px;
+                    $urlres: "-desktop";
+                    background-image: url($urlbase + $urlpos + $urlres + $urlpart + $urlext);
+                }
+            }
+        }
+
+        .feature {
+            @include flex(column, center, center);
+            padding: 0 2rem;
+
+            @media screen and (min-width: $screen-mobile) {
+                @include flex(row-reverse, space-around, center);
+                width: 100%;
+                text-align: left;
+                
+                & img, & div {
+                    width: 33%;
+                }
+            }
+
+            h3 {
+                font-size: clamp(1.2rem, 3vw, 3rem);
+            }
+
+            &:nth-of-type(1) {
+                background-color: $color-bg;
+            }
+
+            &:nth-of-type(2) {
+                padding-bottom: 6rem;
+
+                @media screen and (min-width: $screen-mobile) {
+                    @include flex(row, space-around, center);
+                }
+            }
+
+            &:nth-of-type(3) {
+                background-color: $color-bg;
+                padding-bottom: 6rem;
+
+                img { 
+                    margin-top: 0rem;
+                }
+            }
+            
+            img {
+                margin: 5rem 0 3.5rem;
+            }
+        }
+    }
+
+    
+    .get-started {
+        @include flex(column, center, center);
+        width: 100%;
+        gap: 1rem;
+
+        @media screen and (min-width: $screen-mobile) {
+            margin-top: 4rem;
+        }
+
+        h4 {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            margin-bottom: 0;
+        }
+    }
+}
+
+.footer-divider {
+    width: 100%;
+    height: 112px;
+    background-image: url("./images/bg-footer-top-mobile.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom left;
+
+    @media screen and (min-width: $screen-mobile) {
+        height: 212px;
+        background-image: url("./images/bg-footer-top-desktop.svg");
+    }
+}
+
+footer {
+    @include flex(column-reverse);
+    background-color: $color-text;
+    color: white;
+    padding: 2rem 0;
+    gap: 5rem;
+
+    @media screen and (min-width: $screen-mobile) {
+        @include flex(row);
+        padding: 7rem 5rem 5rem;
+    }
+
+    p {
+        @media screen and (min-width: $screen-mobile) {
+            font-size: 0.9rem;
+            padding-right: 40%;
+            line-height: 1.75;
+        }
+    }
+
+    section {
+        @include flex(column);
+        padding: 0 1.75rem;
+
+        &:first-of-type {
+            gap: 0.5rem;
+        }
+
+        img {
+            filter: brightness(100) grayscale(100) contrast(100);
+            width: 60%;
+
+            @media screen and (min-width: $screen-mobile) {
+                width: 15rem;
+            }
+        }
+    
+        h5 {
+            font-size: 1.5rem;
+            font-weight: $font-weight-semibold;
+            text-transform: uppercase;
+            margin: 0;
+            font-family: $font-open;
+        }
+
+        form {
+            @include flex(column, flex-start, flex-end);
+            width: 100%;
+            padding: 1rem 0;
+            position: relative;
+
+            @media screen and (min-width: 1024px) {
+                @include flex(row, flex-start, flex-end);
+                gap: 2.5rem;
+            }
+
+            input {
+                width: 100%;
+                height: 2.75rem;
+                border-style: none;
+                border-radius: 5px;
+                min-width: 10rem;
+                max-width: 20rem;
+                box-sizing: border-box;
+                position: relative;
+                
+                &:focus {
+                    outline: none;
+                }
+
+                &:invalid {
+                    border-style: solid;
+                    border-color: $color-error;
+
+                    & + span::before {
+                        content: "Please check your email";
+                        color: $color-error;
+                        font-size: 0.75rem;
+                        margin: 0;
+                        padding: 0;
+                        justify-self: flex-start;
+
+                        @media screen and (min-width: $screen-mobile) {
+                            position: absolute;
+                            bottom: -1.5rem;
+                            left: 0;
+                        }
+                    }
+                }
+            }
+
+            span {
+                position: absolute;
+                width: 100%;
+                text-align: right;
+
+                @media screen and (min-width: $screen-mobile) {
+                    text-align: left;
+                }
+            }
+
+            button {
+                @include smooth();
+                box-sizing: border-box;
+                height: 2.75rem;
+                border: none;
+                border-radius: 5px;
+                background-color: $color-button-bg;
+                color: inherit;
+                padding: 0 clamp(0rem, 9vw, 2.25rem);
+                font-family: inherit;
+                cursor: pointer;
+                outline: inherit;
+                font-size: 0.9rem;
+                font-weight: $font-weight-bold;
+                margin-top: 0.8rem;
+
+                &:hover {
+                    background-color: $color-button-active;
+                }
+            }
+        }
+
+        .contact {
+            @include flex(column, center);
+            vertical-align: middle;
+            margin: 1rem 0 2rem;
+
+            @media screen and (min-width: $screen-mobile) {
+                margin: 0 0 3rem;
+            }
+
+            p {
+                margin: 0.5rem 0;
+                padding-right: 0;
+            }
+
+            .icon-phone {
+                @extend %icon;
+                @include size(1.25rem);
+                $url: "./images/icon-phone.svg";
+                @include iconlink($url);
+                vertical-align: middle;
+            }
+    
+            .icon-email {
+                @extend %icon;
+                width: 1.25rem;
+                $url: "./images/icon-email.svg";
+                @include iconlink($url);
+                vertical-align: middle;
+            }
+        }
+        
+
+        .social {
+            @include flex(row, center, center);
+            gap: 1rem;
+
+            @media screen and (min-width: $screen-mobile) {
+                gap: 1.5rem;
+            }
+
+            a { 
+                @include smooth();
+                font-size: 1.5rem;
+                text-decoration: none;
+                color: inherit;
+
+                &:hover {
+                    color: blue;
+                }
+
+                @media screen and (min-width: $screen-mobile) {
+                    font-size: 2.2rem;
+                }
+            }
+        }
+        
+    }
+    
+}
+
+.attribution {
+    font-size: 11px; text-align: center;
+    a {
+        color: hsl(228, 45%, 44%);
+    }
+}
